@@ -1,6 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
   const config = window.companyConfig || {};
   const heroTrack = document.querySelector('.hero-carousel-track');
+  const themeToggle = document.querySelector('.theme-toggle');
+
+  const updateThemeToggle = () => {
+    const isLight = document.documentElement.dataset.theme === 'light';
+    const action = isLight ? 'Switch to black theme' : 'Switch to light theme';
+    if (themeToggle) {
+      themeToggle.textContent = isLight ? '☾' : '☀';
+      themeToggle.setAttribute('aria-label', action);
+      themeToggle.title = action;
+    }
+  };
+
+  updateThemeToggle();
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.dataset.theme =
+        document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('site-theme', document.documentElement.dataset.theme);
+      updateThemeToggle();
+    });
+  }
 
   if (heroTrack && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const slides = Array.from(heroTrack.children);

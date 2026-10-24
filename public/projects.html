@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projects | Sign Pro Kenya Limited</title>
     <meta name="description" content="View signage, printing and branding project work by Sign Pro Kenya Limited." />
+    <script>document.documentElement.dataset.theme = localStorage.getItem('site-theme') || 'dark';</script>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body data-page="projects">
@@ -22,7 +23,8 @@
           <a href="/contact">Contact</a>
         </nav>
         <div class="nav-actions">
-          <a class="phone-pill" href="tel:+254799423262" data-phone-link><span>☎</span><span><strong data-config="phone">+254 799 423262</strong><small>Call / WhatsApp</small></span></a>
+          <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch to light theme">☀</button>
+          <a class="phone-pill" href="tel:+254799423262" data-phone-link><span aria-hidden="true">☎</span><span><strong data-config="phone">+254 799 423262</strong><small>Call / WhatsApp</small></span></a>
           <a class="btn btn-primary" href="/contact#quote-form">Request a Quote →</a>
           <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">☰</button>
         </div>

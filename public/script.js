@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let carouselTimer;
 
     slides.forEach((slide) => heroTrack.appendChild(slide.cloneNode(true)));
+    heroTrack.style.width = `${slideCount * 200}%`;
+    heroTrack.querySelectorAll('img').forEach((slide) => {
+      slide.style.flexBasis = `${slideWidth}%`;
+      slide.style.width = `${slideWidth}%`;
+    });
 
     const scheduleNextSlide = () => {
       carouselTimer = window.setTimeout(() => {

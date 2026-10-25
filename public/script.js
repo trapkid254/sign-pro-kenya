@@ -225,10 +225,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const closeModal = () => { if (lightbox) lightbox.classList.remove('open'); };
-  if (closeLightbox) closeLightbox.addEventListener('click', closeModal);
-  if (lightbox) lightbox.addEventListener('click', (event) => { if (event.target === lightbox) closeModal(); });
-  document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && lightbox) closeModal(); });
+  const closeLightboxModal = () => { if (lightbox) lightbox.classList.remove('open'); };
+  if (closeLightbox) closeLightbox.addEventListener('click', closeLightboxModal);
+  if (lightbox) lightbox.addEventListener('click', (event) => { if (event.target === lightbox) closeLightboxModal(); });
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && lightbox) closeLightboxModal(); });
 
   const quoteForm = document.querySelector('#quote-form');
   if (quoteForm) {

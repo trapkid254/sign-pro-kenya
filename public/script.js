@@ -70,15 +70,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const companyName = config.companyName || 'Sign Pro Kenya Limited';
   const phone = config.phone || '+254 799 423262';
+  const phone2 = config.phone2 || '+254 740 194 496';
   const email = config.email || 'hello@signprokenya.co.ke';
   const address = config.address || 'Nairobi, Kenya';
   const hours = config.hours || 'Mon - Sat: 8:00 AM - 6:00 PM';
   const whatsappNumber = config.whatsappNumber || '254799423262';
+  const whatsappNumber2 = config.whatsappNumber2 || '254740194496';
   const whatsappMessage = encodeURIComponent(config.whatsappMessage || 'Hello Sign Pro Kenya Limited, I would like to request a quotation.');
 
   setText('[data-config="company-name"]', companyName);
   setText('[data-config="company-tagline"]', config.tagline || 'Professional Signage, Printing & Branding Solutions');
   setText('[data-config="phone"]', phone);
+  setText('[data-config="phone2"]', phone2);
   setText('[data-config="email"]', email);
   setText('[data-config="address"]', address);
   setText('[data-config="hours"]', hours);
@@ -92,10 +95,65 @@ document.addEventListener('DOMContentLoaded', () => {
     link.href = `mailto:${email}`;
   });
 
+  // Modal functionality
+  const contactModal = document.getElementById('contactModal');
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalClose = document.getElementById('modalClose');
+
+  const openModal = () => {
+    if (contactModal) {
+      contactModal.classList.add('is-open');
+      contactModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  const closeModal = () => {
+    if (contactModal) {
+      contactModal.classList.remove('is-open');
+      contactModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  };
+
+  // WhatsApp buttons now open modal
   document.querySelectorAll('[data-whatsapp]').forEach((link) => {
-    link.href = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  // Modal close handlers
+  if (modalClose) {
+    modalClose.addEventListener('click', closeModal);
+  }
+
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', closeModal);
+  }
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && contactModal && contactModal.classList.contains('is-open')) {
+      closeModal();
+    }
+  });
+
+  // Modal WhatsApp buttons
+  document.querySelectorAll('[data-modal-whatsapp]').forEach((btn) => {
+    const phoneIndex = parseInt(btn.dataset.phoneIndex || '0');
+    const number = phoneIndex === 0 ? whatsappNumber : whatsappNumber2;
+    btn.href = `https://wa.me/${number}?text=${whatsappMessage}`;
+    btn.target = '_blank';
+    btn.rel = 'noopener noreferrer';
+  });
+
+  // Modal Call buttons
+  document.querySelectorAll('[data-modal-call]').forEach((btn) => {
+    const phoneIndex = parseInt(btn.dataset.phoneIndex || '0');
+    const number = phoneIndex === 0 ? phone : phone2;
+    btn.href = `tel:${number.replace(/\s/g, '')}`;
   });
 
   document.querySelectorAll('[data-map-link]').forEach((link) => {

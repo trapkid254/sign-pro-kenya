@@ -28,7 +28,7 @@
         </nav>
         <div class="nav-actions">
           <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch to light theme">☀</button>
-          <a class="phone-pill" href="tel:+254799423262" data-phone-link><span aria-hidden="true">☎</span><span><strong data-config="phone">+254 799 423262</strong><small>Call / WhatsApp</small></span></a>
+          <a class="phone-pill" href="tel:+254799423262" data-phone-link><span aria-hidden="true">☎</span><span><strong data-config="phone">+254 799 423262</strong> <span data-config="phone2">/ +254 740 194 496</span></span></a>
           <a class="btn btn-primary" href="/contact#quote-form">Request a Quote →</a>
           <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">☰</button>
         </div>
@@ -232,6 +232,7 @@
           <h4>Contact</h4>
           <ul>
             <li><a href="tel:+254799423262" data-phone-link><span data-config="phone">+254 799 423262</span></a></li>
+            <li><a href="tel:+254740194496" data-phone-link><span data-config="phone2">+254 740 194 496</span></a></li>
             <li><a href="mailto:hello@signprokenya.co.ke" data-email-link><span data-config="email">hello@signprokenya.co.ke</span></a></li>
             <li><span data-config="address">Nairobi, Kenya</span></li>
           </ul>
@@ -248,6 +249,31 @@
         <span>© <span data-current-year></span> <span data-config="company-name">Sign Pro Kenya Limited</span>. All rights reserved.</span>
       </div>
     </footer>
+
+    <div class="contact-modal" aria-hidden="true" id="contactModal">
+      <div class="modal-overlay" id="modalOverlay"></div>
+      <div class="modal-content">
+        <button class="modal-close" id="modalClose" aria-label="Close contact modal">×</button>
+        <h2>Contact Us</h2>
+        <p>Choose how to reach us:</p>
+        <div class="contact-options">
+          <div class="contact-option">
+            <div class="phone-number" data-config="phone">+254 799 423262</div>
+            <div class="contact-buttons">
+              <a class="btn btn-whatsapp" data-modal-whatsapp data-phone-index="0">WhatsApp</a>
+              <a class="btn btn-call" data-modal-call data-phone-index="0">Call</a>
+            </div>
+          </div>
+          <div class="contact-option">
+            <div class="phone-number" data-config="phone2">+254 740 194 496</div>
+            <div class="contact-buttons">
+              <a class="btn btn-whatsapp" data-modal-whatsapp data-phone-index="1">WhatsApp</a>
+              <a class="btn btn-call" data-modal-call data-phone-index="1">Call</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="/config.js"></script>
     <script src="/script.js"></script>

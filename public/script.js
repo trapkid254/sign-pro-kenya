@@ -95,65 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
     link.href = `mailto:${email}`;
   });
 
-  // Modal functionality
-  const contactModal = document.getElementById('contactModal');
-  const modalOverlay = document.getElementById('modalOverlay');
-  const modalClose = document.getElementById('modalClose');
-
-  const openModal = () => {
-    if (contactModal) {
-      contactModal.classList.add('is-open');
-      contactModal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
-  };
-
-  const closeModal = () => {
-    if (contactModal) {
-      contactModal.classList.remove('is-open');
-      contactModal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-  };
-
-  // WhatsApp buttons now open modal
   document.querySelectorAll('[data-whatsapp]').forEach((link) => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      openModal();
-    });
-  });
-
-  // Modal close handlers
-  if (modalClose) {
-    modalClose.addEventListener('click', closeModal);
-  }
-
-  if (modalOverlay) {
-    modalOverlay.addEventListener('click', closeModal);
-  }
-
-  // Close modal on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && contactModal && contactModal.classList.contains('is-open')) {
-      closeModal();
-    }
-  });
-
-  // Modal WhatsApp buttons
-  document.querySelectorAll('[data-modal-whatsapp]').forEach((btn) => {
-    const phoneIndex = parseInt(btn.dataset.phoneIndex || '0');
-    const number = phoneIndex === 0 ? whatsappNumber : whatsappNumber2;
-    btn.href = `https://wa.me/${number}?text=${whatsappMessage}`;
-    btn.target = '_blank';
-    btn.rel = 'noopener noreferrer';
-  });
-
-  // Modal Call buttons
-  document.querySelectorAll('[data-modal-call]').forEach((btn) => {
-    const phoneIndex = parseInt(btn.dataset.phoneIndex || '0');
-    const number = phoneIndex === 0 ? phone : phone2;
-    btn.href = `tel:${number.replace(/\s/g, '')}`;
+    link.href = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
   });
 
   document.querySelectorAll('[data-map-link]').forEach((link) => {

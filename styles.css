@@ -918,6 +918,7 @@ img {
 
   .btn {
     width: 100%;
+    padding: 12px 20px;
   }
 
   .hero-actions {

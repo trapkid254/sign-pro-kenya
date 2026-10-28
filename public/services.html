@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="content-language" content="en" />
     <title>Services | Sign Pro Kenya Limited</title>
     <meta name="description" content="Explore signage, printing, vehicle branding, office branding and graphic design services from Sign Pro Kenya Limited." />
     <meta name="robots" content="index, follow" />
@@ -21,6 +22,9 @@
     <meta name="twitter:image" content="/images/signage1.jpg" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="/styles.css" as="style" />
     <script>document.documentElement.dataset.theme = localStorage.getItem('site-theme') || 'dark';</script>
     <link rel="stylesheet" href="/styles.css" />
   </head>
@@ -198,5 +202,25 @@
 
     <script src="/config.js"></script>
     <script src="/script.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://signprokenya.co.ke/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://signprokenya.co.ke/services"
+        }
+      ]
+    }
+    </script>
   </body>
 </html>

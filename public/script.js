@@ -277,8 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Cookie Consent
   const cookieConsent = document.getElementById('cookieConsent');
-  const acceptCookiesBtn = document.getElementById('acceptCookies');
-  const rejectCookiesBtn = document.getElementById('rejectCookies');
 
   if (cookieConsent) {
     const cookiePreference = localStorage.getItem('cookie-consent');
@@ -289,20 +287,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const hideCookieConsent = () => {
       cookieConsent.classList.remove('show');
+      localStorage.setItem('cookie-consent', 'accepted');
     };
 
-    if (acceptCookiesBtn) {
-      acceptCookiesBtn.addEventListener('click', () => {
-        localStorage.setItem('cookie-consent', 'accepted');
-        hideCookieConsent();
-      });
-    }
-
-    if (rejectCookiesBtn) {
-      rejectCookiesBtn.addEventListener('click', () => {
-        localStorage.setItem('cookie-consent', 'rejected');
-        hideCookieConsent();
-      });
-    }
+    // Click anywhere on the banner to dismiss
+    cookieConsent.addEventListener('click', hideCookieConsent);
   }
 });

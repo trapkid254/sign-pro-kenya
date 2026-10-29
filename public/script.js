@@ -213,7 +213,9 @@ document.addEventListener('DOMContentLoaded', () => {
         quantity: String(formData.get('quantity') || '').trim(),
         location: String(formData.get('location') || '').trim(),
         preferredDate: String(formData.get('preferredDate') || '').trim(),
-        contactMethod: String(formData.get('contactMethod') || '').trim()
+        contactMethod: String(formData.get('contactMethod') || '').trim(),
+        privacyConsent: formData.get('privacyConsent') === 'on',
+        marketingConsent: formData.get('marketingConsent') === 'on'
       };
 
       const errorMap = {};
@@ -221,6 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!payload.phone) errorMap.phone = 'Phone number is required.';
       if (!payload.service) errorMap.service = 'Please select a service.';
       if (!payload.projectDescription) errorMap.projectDescription = 'Project description is required.';
+      if (!payload.privacyConsent) errorMap.privacyConsent = 'You must agree to the Privacy Policy to submit this form.';
       if (payload.phone && !/^[+()\d\s-]{7,20}$/.test(payload.phone)) errorMap.phone = 'Enter a valid phone number.';
       if (payload.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) errorMap.email = 'Enter a valid email address.';
 
@@ -271,4 +274,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const pageTitle = document.title || `${companyName} | Signage & Branding`;
   document.title = pageTitle;
+
+  // Cookie Consent
+  const cookieConsent = document.getElementById('cookieConsent');
+  const acceptCookiesBtn = document.getElementById('acceptCookies');
+  const rejectCookiesBtn = document.getElementById('rejectCookies');
+
+  if (cookieConsent) {
+    const cookiePreference = localStorage.getItem('cookie-consent');
+
+    if (!cookiePreference) {
+      cookieConsent.classList.add('show');
+    }
+
+    const hideCookieConsent = () => {
+      cookieConsent.classList.remove('show');
+    };
+
+    if (acceptCookiesBtn) {
+      acceptCookiesBtn.addEventListener('click', () => {
+        localStorage.setItem('cookie-consent', 'accepted');
+        hideCookieConsent();
+      });
+    }
+
+    if (rejectCookiesBtn) {
+      rejectCookiesBtn.addEventListener('click', () => {
+        localStorage.setItem('cookie-consent', 'rejected');
+        hideCookieConsent();
+      });
+    }
+  }
 });

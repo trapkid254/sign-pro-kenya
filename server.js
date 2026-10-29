@@ -149,6 +149,22 @@ app.get('/contact', (_req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'contact.html'));
 });
 
+app.get('/privacy-policy', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'privacy-policy.html'));
+});
+
+app.get('/terms-of-service', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'terms-of-service.html'));
+});
+
+app.get('/refund-policy', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'refund-policy.html'));
+});
+
+app.get('/cookies-policy', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cookies-policy.html'));
+});
+
 app.get('/robots.txt', (_req, res) => {
   res.type('txt').send(`User-agent: *\nAllow: /\nSitemap: ${process.env.SITE_URL || 'http://localhost:3000'}/sitemap.xml\n`);
 });

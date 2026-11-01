@@ -134,6 +134,7 @@ body[data-page="projects"] .project-card img { height: clamp(220px, 16vw, 300px)
 .filter-btn { border: 1px solid var(--border); background: var(--white); color: var(--text); border-radius: 999px; padding: 0.7rem 1.1rem; font-weight: 700; cursor: pointer; }
 .filter-btn.active { background: var(--primary); color: var(--white); border-color: var(--primary); }
 .project-card.hidden { display: none; }
+.project-card.project-hidden { display: none; }
 .lightbox { position: fixed; inset: 0; background: rgba(17,18,19,0.86); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 24px; }
 .lightbox.open { display: flex; }
 .lightbox-content { background: var(--white); border-radius: var(--radius-lg); max-width: 820px; width: min(100%, 840px); overflow: hidden; }

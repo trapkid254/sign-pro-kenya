@@ -132,17 +132,45 @@ document.addEventListener('DOMContentLoaded', () => {
   const emptyState = document.querySelector('.empty-state');
 
   if (filterButtons.length && projectCards.length) {
+    // Initially show only one project per category
+    const categories = new Set();
+    projectCards.forEach((card) => {
+      const category = card.dataset.category;
+      if (!categories.has(category)) {
+        categories.add(category);
+        card.classList.remove('project-hidden');
+      } else {
+        card.classList.add('project-hidden');
+      }
+    });
+
     filterButtons.forEach((button) => {
       button.addEventListener('click', () => {
         const filter = button.dataset.filter;
         filterButtons.forEach((btn) => btn.classList.toggle('active', btn === button));
         let visibleCount = 0;
 
-        projectCards.forEach((card) => {
-          const matches = filter === 'all' || card.dataset.category === filter;
-          card.classList.toggle('hidden', !matches);
-          if (matches) visibleCount += 1;
-        });
+        if (filter === 'all') {
+          // Show only one project per category when "All Projects" is selected
+          const categoriesSeen = new Set();
+          projectCards.forEach((card) => {
+            const category = card.dataset.category;
+            if (!categoriesSeen.has(category)) {
+              categoriesSeen.add(category);
+              card.classList.remove('project-hidden');
+              visibleCount += 1;
+            } else {
+              card.classList.add('project-hidden');
+            }
+          });
+        } else {
+          // Show all projects in the selected category
+          projectCards.forEach((card) => {
+            const matches = card.dataset.category === filter;
+            card.classList.toggle('project-hidden', !matches);
+            if (matches) visibleCount += 1;
+          });
+        }
 
         if (emptyState) emptyState.classList.toggle('show', visibleCount === 0);
       });

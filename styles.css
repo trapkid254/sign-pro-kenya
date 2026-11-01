@@ -384,6 +384,10 @@ img {
   transition: all 0.3s ease;
 }
 
+.project-card.project-hidden {
+  display: none;
+}
+
 .project-card:hover {
   box-shadow: var(--shadow-hover);
   transform: translateY(-4px);

@@ -314,17 +314,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (cookieConsent) {
     const cookiePreference = localStorage.getItem('cookie-consent');
+    cookieConsent.setAttribute('aria-hidden', String(Boolean(cookiePreference)));
 
     if (!cookiePreference) {
       cookieConsent.classList.add('show');
+      cookieConsent.setAttribute('aria-hidden', 'false');
     }
 
-    const hideCookieConsent = () => {
+    const setCookiePreference = (preference) => {
+      localStorage.setItem('cookie-consent', preference);
       cookieConsent.classList.remove('show');
-      localStorage.setItem('cookie-consent', 'accepted');
+      cookieConsent.setAttribute('aria-hidden', 'true');
     };
 
-    // Click anywhere on the banner to dismiss
-    cookieConsent.addEventListener('click', hideCookieConsent);
+    cookieConsent.querySelectorAll('[data-cookie-choice]').forEach((button) => {
+      button.addEventListener('click', () => {
+        setCookiePreference(button.dataset.cookieChoice);
+      });
+    });
   }
 });

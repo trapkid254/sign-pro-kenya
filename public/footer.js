@@ -3,7 +3,7 @@
     <div class="container footer-grid">
       <div class="footer-brand">
         <h3 data-config="company-name">Sign Pro Kenya Limited</h3>
-        <p>Professional design and production for brands that want to stand out with confidence.</p>
+        <p>Professional signage, printing, and branding solutions.</p>
       </div>
 
       <div>
@@ -33,6 +33,12 @@
           <li><a href="tel:+254799423262" data-phone-link><span data-config="phone">+254 799 423262</span></a></li>
           <li><a href="tel:+254740194496" data-phone-link><span data-config="phone2">+254 740 194 496</span></a></li>
           <li><a href="mailto:hello@signprokenya.co.ke" data-email-link><span data-config="email">hello@signprokenya.co.ke</span></a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Location</h4>
+        <ul>
           <li>
             <a href="https://maps.app.goo.gl/P3YEELvt92W27W2YA?g_st=awb" target="_blank" rel="noopener noreferrer" data-map-link aria-label="Find Sign Pro Kenya Limited on Google Maps">
               <span data-config="address">Nairobi, Kenya</span>

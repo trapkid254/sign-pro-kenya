@@ -88,7 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
   setText('[data-config="company-copy"]', companyName);
 
   document.querySelectorAll('[data-phone-link]').forEach((link) => {
-    link.href = `tel:${phone.replace(/\s+/g, '')}`;
+    const displayedPhone = link.querySelector('[data-config="phone"], [data-config="phone2"]')?.textContent || phone;
+    const dialablePhone = displayedPhone.replace(/[^\d+]/g, '');
+    if (dialablePhone) link.href = `tel:${dialablePhone}`;
   });
 
   document.querySelectorAll('[data-email-link]').forEach((link) => {

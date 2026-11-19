@@ -100,13 +100,19 @@ body[data-page="projects"] .project-card img { height: clamp(220px, 16vw, 300px)
 .footer-grid > :nth-child(5) { grid-area: location; }
 .footer-grid > :nth-child(6) { grid-area: hours; }
 .footer-grid > :nth-child(7) { grid-area: social; }
-.footer-grid { grid-template-areas: "brand quick-links legal ." "contact location hours social"; }
+.footer-grid { grid-template-areas: "brand quick-links legal social" "contact location hours ."; }
 .footer h3, .footer h4 { color: var(--white); margin: 0 0 18px; }
 .footer p, .footer li, .footer a { color: rgba(255,255,255,0.74); }
 .footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
 .footer .social-icons { display: grid; grid-template-columns: repeat(3, 40px); gap: 10px; }
 .footer .social-icons a { display: grid; width: 40px; height: 40px; place-items: center; border: 1px solid rgba(255,255,255,0.18); border-radius: 50%; color: var(--white); transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease; }
-.footer .social-icons a:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-2px); }
+.footer .social-icons a:hover, .footer .social-icons a:focus-visible { transform: translateY(-2px); }
+.footer .social-icons a[title="WhatsApp"]:hover, .footer .social-icons a[title="WhatsApp"]:focus-visible { background: #25d366; border-color: #25d366; color: var(--white); }
+.footer .social-icons a[title="Instagram"]:hover, .footer .social-icons a[title="Instagram"]:focus-visible { background: linear-gradient(135deg, #feda75, #fa7e1e 35%, #d62976 65%, #962fbf 82%, #4f5bd5); border-color: #d62976; color: var(--white); }
+.footer .social-icons a[title="TikTok"]:hover, .footer .social-icons a[title="TikTok"]:focus-visible { background: #010101; border-color: #25f4ee; color: var(--white); box-shadow: 2px 0 #fe2c55, -2px 0 #25f4ee; }
+.footer .social-icons a[title="Facebook"]:hover, .footer .social-icons a[title="Facebook"]:focus-visible { background: #0866ff; border-color: #0866ff; color: var(--white); }
+.footer .social-icons a[title="X"]:hover, .footer .social-icons a[title="X"]:focus-visible { background: #000000; border-color: #ffffff; color: var(--white); }
+.footer .social-icons a[title="YouTube"]:hover, .footer .social-icons a[title="YouTube"]:focus-visible { background: #ff0033; border-color: #ff0033; color: var(--white); }
 .footer .social-icons svg { display: block; width: 20px; height: 20px; fill: currentColor; }
 .footer .social-icons svg circle, .footer .social-icons svg rect { vector-effect: non-scaling-stroke; }
 .footer .location-map { display: block; width: 100%; height: 145px; border: 0; border-radius: 12px; background: rgba(255,255,255,0.08); }

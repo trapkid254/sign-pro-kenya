@@ -46,6 +46,7 @@
             </a>
           </li>
         </ul>
+        <iframe class="location-map" data-map-frame title="Sign Pro Kenya Limited map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
 
       <div>

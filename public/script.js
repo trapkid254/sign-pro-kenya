@@ -102,9 +102,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.querySelectorAll('[data-map-link]').forEach((link) => {
-    link.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+    const mapQuery = `${config.companyName || 'Sign Pro Kenya Limited'}, ${address}`;
+    link.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
+  });
+
+  document.querySelectorAll('[data-map-frame]').forEach((frame) => {
+    const mapQuery = `${config.companyName || 'Sign Pro Kenya Limited'}, ${address}`;
+    frame.src = `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed`;
   });
 
   const navToggle = document.querySelector('.nav-toggle');

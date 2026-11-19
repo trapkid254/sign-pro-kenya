@@ -127,8 +127,6 @@ app.post('/api/enquiries', async (req, res) => {
   }
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
-
 app.get('/', (_req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -166,20 +164,34 @@ app.get('/cookies-policy', (_req, res) => {
 });
 
 app.get('/robots.txt', (_req, res) => {
-  res.type('txt').send(`User-agent: *\nAllow: /\nSitemap: ${process.env.SITE_URL || 'http://localhost:3000'}/sitemap.xml\n`);
+  const baseUrl = (process.env.SITE_URL || 'https://signprokenya.co.ke').replace(/\/+$/, '');
+  res.type('txt').send(`User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${baseUrl}/sitemap.xml\n`);
 });
 
 app.get('/sitemap.xml', (_req, res) => {
-  const baseUrl = process.env.SITE_URL || 'http://localhost:3000';
+  const baseUrl = (process.env.SITE_URL || 'https://signprokenya.co.ke').replace(/\/+$/, '');
+  const pages = [
+    '/',
+    '/services',
+    '/projects',
+    '/about',
+    '/contact',
+    '/privacy-policy',
+    '/terms-of-service',
+    '/refund-policy',
+    '/cookies-policy'
+  ];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url><loc>${baseUrl}/</loc></url>
-    <url><loc>${baseUrl}/services</loc></url>
-    <url><loc>${baseUrl}/projects</loc></url>
-    <url><loc>${baseUrl}/about</loc></url>
-    <url><loc>${baseUrl}/contact</loc></url>
-  </urlset>`;
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${pages.map((page) => `  <url><loc>${baseUrl}${page}</loc></url>`).join('\n')}
+</urlset>`;
   res.type('xml').send(xml);
+});
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use((_req, res) => {
+  res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
 });
 
 app.listen(port, () => {

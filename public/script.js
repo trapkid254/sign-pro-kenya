@@ -140,6 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const emptyState = document.querySelector('.empty-state');
 
   if (filterButtons.length && projectCards.length) {
+    // Check URL parameter for initial filter
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialFilter = urlParams.get('filter');
+
     // Initially show only one project per category
     const categories = new Set();
     projectCards.forEach((card) => {
@@ -151,6 +155,14 @@ document.addEventListener('DOMContentLoaded', () => {
         card.classList.add('project-hidden');
       }
     });
+
+    // If URL has a filter parameter, apply it
+    if (initialFilter) {
+      const targetButton = Array.from(filterButtons).find(btn => btn.dataset.filter === initialFilter);
+      if (targetButton) {
+        targetButton.click();
+      }
+    }
 
     filterButtons.forEach((button) => {
       button.addEventListener('click', () => {

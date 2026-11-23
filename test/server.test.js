@@ -1,6 +1,7 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
-const { validateEnquiry } = require('../server');
+const app = require('../server');
+const { validateEnquiry } = app;
 
 const validPayload = () => ({
   name: '  Test Client  ',
@@ -59,4 +60,20 @@ test('rejects invalid optional consent types', () => {
   payload.marketingConsent = 'yes';
 
   assert.ok(validateEnquiry(payload).marketingConsent);
+});
+
+test('exports the Express app as a handler and redirects the ICO favicon alias', async (t) => {
+  assert.equal(typeof app, 'function');
+
+  const server = await new Promise((resolve) => {
+    const listener = app.listen(0, '127.0.0.1', () => resolve(listener));
+  });
+  t.after(() => new Promise((resolve) => server.close(resolve)));
+
+  const response = await fetch(`http://127.0.0.1:${server.address().port}/favicon.ico`, {
+    redirect: 'manual'
+  });
+
+  assert.equal(response.status, 308);
+  assert.equal(response.headers.get('location'), '/favicon.svg');
 });

@@ -11,7 +11,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 const isProduction = process.env.NODE_ENV === 'production';
 const siteUrl = new URL(process.env.SITE_URL || 'https://signprokenyaltd.co.ke');
-const trustedProxyHops = Number(process.env.TRUST_PROXY_HOPS || 0);
+const trustedProxyHops = Number(
+  process.env.TRUST_PROXY_HOPS === undefined
+    ? (process.env.VERCEL === '1' ? 1 : 0)
+    : process.env.TRUST_PROXY_HOPS
+);
 
 if (!Number.isInteger(trustedProxyHops) || trustedProxyHops < 0) {
   throw new Error('TRUST_PROXY_HOPS must be a non-negative integer.');
@@ -232,6 +236,10 @@ app.post('/api/enquiries', enquiryRateLimit, async (req, res) => {
   }
 });
 
+app.get('/favicon.ico', (_req, res) => {
+  res.redirect(308, '/favicon.svg');
+});
+
 app.get('/', (_req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -319,4 +327,5 @@ if (require.main === module) {
   });
 }
 
-module.exports = { app, validateEnquiry };
+app.validateEnquiry = validateEnquiry;
+module.exports = app;

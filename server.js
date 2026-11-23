@@ -31,7 +31,7 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       baseUri: ["'self'"],
-      connectSrc: ["'self'"],
+      connectSrc: ["'self'", 'https://www.google-analytics.com'],
       defaultSrc: ["'self'"],
       fontSrc: ["'self'", 'https://fonts.gstatic.com'],
       formAction: ["'self'"],
@@ -39,7 +39,7 @@ app.use(helmet({
       frameSrc: ['https://www.google.com'],
       imgSrc: ["'self'", 'data:'],
       objectSrc: ["'none'"],
-      scriptSrc: ["'self'"],
+      scriptSrc: ["'self'", 'https://www.googletagmanager.com', 'https://www.google-analytics.com', "'sha256-q//MkFLzhqWEzbQ/tD/O/wtl2tDUpfVMyDtv/BeBXA8='"],
       styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
       ...(isProduction ? { upgradeInsecureRequests: [] } : {})
     }

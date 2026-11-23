@@ -13,7 +13,7 @@ A responsive, multi-page business website for a signage, printing and branding c
 
 ## Production setup
 
-- Terminate TLS at a trusted reverse proxy and configure that proxy to redirect HTTP to HTTPS. Set `NODE_ENV=production`, `SITE_URL=https://signprokenyaltd.co.ke` (or the chosen canonical HTTPS origin), and `TRUST_PROXY_HOPS` to the exact number of trusted proxies in front of this server (usually `1`). Do not expose the app directly if the proxy is intended to provide TLS.
+- Terminate TLS at a trusted reverse proxy and configure that proxy to redirect HTTP to HTTPS. Set `NODE_ENV=production`, `SITE_URL=https://signprokenyaltd.co.ke` (or the chosen canonical HTTPS origin), and `TRUST_PROXY_HOPS` to the exact number of trusted proxies in front of this server (usually `1`). Vercel defaults this to one trusted hop; override it only if your proxy topology requires it. Do not expose the app directly if the proxy is intended to provide TLS.
 - Configure SMTP credentials through server environment variables. SMTP uses implicit TLS on port 465 and requires STARTTLS on other ports. Enquiries fail explicitly if SMTP is not configured; they are not stored in a database or retained in memory.
 - Keep `.env` out of source control. The browser configuration contains only public company contact details; secrets belong in server environment variables.
 - The enquiry endpoint validates fields and privacy consent on the server, checks same-origin browser submissions, limits request size to 16 KB, and allows five submissions per IP per 15 minutes. Its default rate-limit store is per process; multi-instance deployments should configure a shared store.

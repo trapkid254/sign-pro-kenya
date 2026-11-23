@@ -527,3 +527,20 @@ html:not([data-theme="light"]) .home-page .service-card { background: #1b2024; }
   .cookie-consent-inner { align-items: stretch; flex-direction: column; gap: 14px; }
   .cookie-consent-buttons { display: grid; grid-template-columns: 1fr 1fr; }
 }
+
+@media (max-width: 700px) {
+  .topbar-inner { width: calc(100% - 24px); gap: 8px; }
+  .brand { min-width: 0; flex: 1 1 auto; gap: 4px; }
+  .brand-logo { width: 72px; height: 50px; object-fit: contain; }
+  .brand-name { min-width: 0; white-space: normal; }
+  .brand-name strong { font-size: 0.68rem; line-height: 1.15; white-space: normal; }
+  .nav-actions { flex: 0 0 auto; gap: 6px; }
+  .theme-toggle { width: 36px; height: 36px; }
+}
+
+@media (max-width: 360px) {
+  .brand-logo { width: 62px; }
+  .brand-name strong { font-size: 0.62rem; }
+  .nav-actions { gap: 4px; }
+  .theme-toggle { width: 32px; height: 32px; }
+}
